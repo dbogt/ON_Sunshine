@@ -34,15 +34,20 @@ st.write(df.head(4))
 
 allEmployers = sorted(df['Employer'].unique())
 allYears = sorted(df['Calendar Year'].unique())
-st.write(allEmployers)
+allSectors = sorted(df['Sector'].unique())
+allJobs = sorted(df['Job Title'].unique())
 
 filterDF = df.copy()
 
-pickEmployer = st.multiselect("Pick employers to filter", allEmployers)
-pickYear = st.multiselect("Pick a year to filter", allYears)
+pickEmployer = st.sidebar.multiselect("Pick employers to filter", allEmployers)
+pickYear = st.sidebar.multiselect("Pick a year to filter", allYears)
+pickSector = st.sidebar.multiselect("Pick a sector to filter", allSectors)
+pickJob = st.sidebar.multiselect("Pick a job title to filter", allJobs)
 
 filterMap = {'Employer':pickEmployer,
-            'Calendar Year':pickYear}
+            'Calendar Year':pickYear,
+            'Sector':pickSector,
+            'Job Title':pickJob}
 
 for colName, filterVals in filterMap.items():
     if len(filterVals)>0: 
