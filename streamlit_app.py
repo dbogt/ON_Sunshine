@@ -35,7 +35,7 @@ st.write(df.head(4))
 allEmployers = sorted(df['Employer'].unique())
 allYears = sorted(df['Calendar Year'].unique())
 allSectors = sorted(df['Sector'].unique())
-allJobs = sorted(df['Job Title'].unique())
+allJobs = df['Job Title'].unique()
 
 filterDF = df.copy()
 
