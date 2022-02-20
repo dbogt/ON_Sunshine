@@ -22,7 +22,7 @@ if st.checkbox("Intersting finds"):
     finds = """
     - Search for YELLE-WEATHERALL as last name, looks like there was a typo in 2006, should be $127,455 not $12,745,500
     - Search for HARRIS STEPHEN (last, first), looks like there was a typo in 2006, should be $128k not 12.8mm 
-    
+    - Some employer names have not been consistent over time (e.g. York in 1997, otherwise York University)
     """
     st.write(finds)
 
