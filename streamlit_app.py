@@ -6,6 +6,15 @@ st.set_page_config(layout="wide",page_title='Ontario Sunshine List')
 csvID = st.secrets['csvID']
 
 st.title("Ontario Sunshine List Dashboard")
+
+if st.checkbox("Intersting finds"):
+    finds = """
+    - Search for YELLE-WEATHERALL as last name, looks like there was a typo in 2006, should be $127,455 not $12,745,500
+    - Search for HARRIS STEPHEN (last, first), looks like there was a typo in 2006, should be $128k not 12.8mm 
+    
+    """
+    st.write("")
+
 st.write("App in progress...")
 st.write("App will load last 10 years of historical public list disclosure from https://www.ontario.ca/page/public-sector-salary-disclosure")
 # path = 'https://drive.google.com/uc?export=download&id='+csvID
