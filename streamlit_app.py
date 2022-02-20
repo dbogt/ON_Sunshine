@@ -31,3 +31,23 @@ def grab_csv():
 df = grab_csv()
 st.write(list(df.columns))
 st.write(df.head(4))
+
+allEmployers = sorted(df['Employer'].unique())
+allYears = sorted(df['Calendar Year'].unique())
+st.write(allEmployers)
+
+filterDF = df.copy()
+
+pickEmployer = st.multiselect("Pick employers to filter", allEmployers)
+pickYear = st.multiselect("Pick a year to filter", allYears)
+
+filterMap = {'Employer':pickEmployer,
+            'Calendar Year':pickYear}
+
+for colName, filterVals in filterMap.items():
+    if len(filterVals)>0: 
+        filterDF = filterDF[filterDF[colName].isin(filterVals)]
+
+st.write(filterDF.head(30))
+st.write(filterDF.describe())
+    
