@@ -8,6 +8,12 @@ csvID = st.secrets['csvID']
 # csvID = st.secrets['sp500ID']
 path = 'https://drive.google.com/uc?export=download&id='+csvID
 # st.write(csvID)
-df = pd.read_csv(path)
+
+@st.cache
+def grab_csv():
+    df = pd.read_csv(path)
+    return df
+
+df = grab_csv()
 st.write(list(df.columns))
-st.write(df)
+st.write(df.head(4))
