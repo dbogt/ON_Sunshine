@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 
+st.set_page_config(layout="wide",page_title='Ontario Sunshine List')
 csvID = st.secrets['csvID']
 
 st.title("Ontario Sunshine List Dashboard")
@@ -37,7 +38,7 @@ pickSector = st.sidebar.multiselect("Pick a sector to filter", allSectors)
 pickJob = st.sidebar.multiselect("Pick a job title to filter", allJobs)
 
 col1, col2, col3, col4 = st.columns(4)
-output = "${:,.2f}"
+output = "${:,.0f}"
 with col1:
     st.metric("Min Salary",output.format(minSalary))
 with col2:
@@ -67,6 +68,22 @@ minSalaryPick = st.sidebar.number_input("Min salary", value=100000.0)
 maxSalaryPick = st.sidebar.number_input("Max salary", value=maxSalary)
 
 filterDF = filterDF[filterDF['Salary Paid'].between(minSalaryPick, maxSalaryPick)]
+st.header("Filtered Data Set")
+colf1, colf2, colf3, colf4 = st.columns(4)
+minFSalary = filterDF['Salary Paid'].min()
+maxFSalary = filterDF['Salary Paid'].max()
+stdFSalary = filterDF['Salary Paid'].std()
+avgFSalary = filterDF['Salary Paid'].mean()
+
+output = "${:,.0f}"
+with colf1:
+    st.metric("Min Salary",output.format(minFSalary))
+with colf2:
+    st.metric("Avg Salary",output.format(avgFSalary))
+with colf3:
+    st.metric("Max Salary",output.format(maxFSalary))
+with colf4:
+    st.metric("Salary Stand Deviation",output.format(stdFSalary))
 
 st.write(filterDF.shape)
 st.write(filterDF.head(300))
