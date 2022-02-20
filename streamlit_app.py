@@ -28,7 +28,7 @@ def save_response_content(response):
     df = pd.read_csv('temp.csv')
     return df
 
-@st.cahce
+# @st.cahce
 def download_file_from_google_drive(id):
     URL = "https://docs.google.com/uc?export=download"
 
