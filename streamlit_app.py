@@ -63,8 +63,8 @@ for colName, filterVals in filterMap.items():
 
 filterDF = filterDF[filterDF['Last Name'].str.contains(lastName) & filterDF['First Name'].str.contains(firstName)]
 
-minSalaryPick = st.sidebr.number_input("Min salary", value=100000.0)
-maxSalaryPick = st.sidebr.number_input("Max salary", value=maxSalary)
+minSalaryPick = st.sidebar.number_input("Min salary", value=100000.0)
+maxSalaryPick = st.sidebar.number_input("Max salary", value=maxSalary)
 
 st.write(filterDF.shape)
 st.write(filterDF.head(30))
