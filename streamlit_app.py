@@ -47,7 +47,9 @@ pickEmployer = st.sidebar.multiselect("Pick employers to filter", allEmployers)
 pickYear = st.sidebar.multiselect("Pick a year to filter", allYears)
 pickSector = st.sidebar.multiselect("Pick a sector to filter", allSectors)
 pickJob = st.sidebar.multiselect("Pick a job title to filter", allJobs)
-pickSalary = st.sidebar.slider('Pick salary range',minSalary, maxSalary, (avgSalary-stdSalary,avgSalary+stdSalary))
+st.write(minSalary, maxSalary, stdSalary, avgSalary)
+# pickSalary = st.sidebar.slider('Pick salary range',minSalary, maxSalary, (avgSalary-stdSalary,avgSalary+stdSalary))
+# pickSalary = st.sidebar.slider('Pick salary range',minSalary, maxSalary, (avgSalary-stdSalary,avgSalary+stdSalary))
 
 filterMap = {'Employer':pickEmployer,
             'Calendar Year':pickYear,
