@@ -29,8 +29,7 @@ def grab_csv():
     return df
 
 df = grab_csv()
-st.write(list(df.columns))
-st.write(df.head(4))
+st.sidebar.write(list(df.columns))
 
 allEmployers = sorted(df['Employer'].unique())
 allYears = sorted(df['Calendar Year'].unique())
