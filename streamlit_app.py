@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import requests
+import re
 
 st.set_page_config(layout="wide",page_title='Ontario Sunshine List')
 csvID = st.secrets['csvID']
@@ -69,9 +70,9 @@ filterMap = {'Employer':pickEmployer,
 
 for colName, filterVals in filterMap.items():
     if len(filterVals)>0: 
-        filterDF = filterDF[filterDF[colName].isin(filterVals)]
+        filterDF = filterDF[filterDF[colName].str.strip().str.lower().isin([x.lower() for x in filterVals])]
 
-filterDF = filterDF[filterDF['Last Name'].str.contains(lastName) & filterDF['First Name'].str.contains(firstName)]
+filterDF = filterDF[filterDF['Last Name'].str.contains(lastName, flags=re.IGNORECASE, regex=True) & filterDF['First Name'].str.contains(firstName, flags=re.IGNORECASE, regex=True)]
 
 minSalaryPick = st.sidebar.number_input("Min salary", value=100000.0)
 maxSalaryPick = st.sidebar.number_input("Max salary", value=maxSalary)
