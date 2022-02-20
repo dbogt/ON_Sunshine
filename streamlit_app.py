@@ -101,5 +101,6 @@ st.write(filterDF.shape)
 st.write(filterDF.head(5000))
 st.write("Summary stats")
 st.write(filterDF.describe())
-fig = px.line(filterDF, x='Calendar Year', y='Salary Paid', color='Full Name')
-st.plotly_chart(fig)
+if st.checkbox("Show chart"):
+    fig = px.line(filterDF, x='Calendar Year', y='Salary Paid', color='Full Name')
+    st.plotly_chart(fig)
