@@ -13,7 +13,7 @@ if st.checkbox("Intersting finds"):
     - Search for HARRIS STEPHEN (last, first), looks like there was a typo in 2006, should be $128k not 12.8mm 
     
     """
-    st.write("")
+    st.write(finds)
 
 st.write("App in progress...")
 st.write("App will load last 10 years of historical public list disclosure from https://www.ontario.ca/page/public-sector-salary-disclosure")
