@@ -40,7 +40,7 @@ maxSalary = df['Salary Paid'].max()
 stdSalary = df['Salary Paid'].std()
 avgSalary = df['Salary Paid'].mean()
 
-pickEmployer = st.sidebar.multiselect("Pick employers to filter", allEmployers,'York University')
+pickEmployer = st.sidebar.multiselect("Pick employers to filter", allEmployers,['York University','York'])
 pickYear = st.sidebar.multiselect("Pick a year to filter", allYears)
 pickSector = st.sidebar.multiselect("Pick a sector to filter", allSectors)
 # pickJob = st.sidebar.multiselect("Pick a job title to filter", allJobs)
