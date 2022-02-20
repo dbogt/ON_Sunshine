@@ -11,7 +11,7 @@ path = "https://drive.google.com/u/0/uc?id={}&export=download&confirm=t".format(
 @st.cache
 def grab_csv():
     df = pd.read_csv(path)
-    df['Full Name'] = df.apply(lambda x: (x['First Name'].strip() + " " + x['Last Name'].strip()).title(), axis=1)
+    # df['Full Name'] = df.apply(lambda x: (x['First Name'].strip() + " " + x['Last Name'].strip()).title(), axis=1)
     return df
 
 df = grab_csv()
@@ -102,5 +102,6 @@ st.write(filterDF.head(5000))
 st.write("Summary stats")
 st.write(filterDF.describe())
 if st.checkbox("Show chart"):
+    filterDF['Full Name'] = filterDF.apply(lambda x: (x['First Name'].strip() + " " + x['Last Name'].strip()).title(), axis=1)
     fig = px.bar(filterDF, x='Calendar Year', y='Salary Paid', color='Full Name')
     st.plotly_chart(fig)
