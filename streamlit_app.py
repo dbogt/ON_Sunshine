@@ -28,6 +28,7 @@ def save_response_content(response):
     df = pd.read_csv('temp.csv')
     return df
 
+@st.cahce
 def download_file_from_google_drive(id):
     URL = "https://docs.google.com/uc?export=download"
 
@@ -42,8 +43,8 @@ def download_file_from_google_drive(id):
 
     return save_response_content(response) 
 
-# csvID = st.secrets['csvID']
-csvID = st.secrets['sp500ID']
+csvID = st.secrets['csvID']
+# csvID = st.secrets['sp500ID']
 
 df =  download_file_from_google_drive(csvID)
 st.title("Ontario Sunshine List Dashboard")
