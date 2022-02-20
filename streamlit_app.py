@@ -15,7 +15,7 @@ import requests
 csvID = st.secrets['csvID']
 # csvID = st.secrets['sp500ID']
 
-df =  download_file_from_google_drive(csvID)
+# df =  download_file_from_google_drive(csvID)
 st.title("Ontario Sunshine List Dashboard")
 st.write("App in progress...")
 st.write("App will load last 10 years of historical public list disclosure from https://www.ontario.ca/page/public-sector-salary-disclosure")
