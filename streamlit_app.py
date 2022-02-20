@@ -50,7 +50,8 @@ pickJob = st.sidebar.multiselect("Pick a job title to filter", allJobs)
 st.write(minSalary, maxSalary, stdSalary, avgSalary)
 # pickSalary = st.sidebar.slider('Pick salary range',minSalary, maxSalary, (avgSalary-stdSalary,avgSalary+stdSalary))
 # pickSalary = st.sidebar.slider('Pick salary range',100000.0, 2000000.0, (120000.0,200000.0))
-
+lastName = st.sidebar.text_input("Last name search")
+firstName = st.sidebar.text_input("First name search")
 filterMap = {'Employer':pickEmployer,
             'Calendar Year':pickYear,
             'Sector':pickSector,
@@ -59,6 +60,9 @@ filterMap = {'Employer':pickEmployer,
 for colName, filterVals in filterMap.items():
     if len(filterVals)>0: 
         filterDF = filterDF[filterDF[colName].isin(filterVals)]
+
+filterDF = filterDF[filterDF['Last Name'].str.contains(lastName) & filterDF['First Name'].str.contains(firstName)]
+
 
 st.write(filterDF.shape)
 st.write(filterDF.head(30))
