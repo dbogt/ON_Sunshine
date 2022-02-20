@@ -43,13 +43,13 @@ avgSalary = df['Salary Paid'].mean()
 
 filterDF = df.copy()
 
-pickEmployer = st.sidebar.multiselect("Pick employers to filter", allEmployers)
+pickEmployer = st.sidebar.multiselect("Pick employers to filter", allEmployers,'York University')
 pickYear = st.sidebar.multiselect("Pick a year to filter", allYears)
 pickSector = st.sidebar.multiselect("Pick a sector to filter", allSectors)
 pickJob = st.sidebar.multiselect("Pick a job title to filter", allJobs)
 st.write(minSalary, maxSalary, stdSalary, avgSalary)
 # pickSalary = st.sidebar.slider('Pick salary range',minSalary, maxSalary, (avgSalary-stdSalary,avgSalary+stdSalary))
-pickSalary = st.sidebar.slider('Pick salary range',100000.0, 2000000.0, (120000.0,200000.0))
+# pickSalary = st.sidebar.slider('Pick salary range',100000.0, 2000000.0, (120000.0,200000.0))
 
 filterMap = {'Employer':pickEmployer,
             'Calendar Year':pickYear,
