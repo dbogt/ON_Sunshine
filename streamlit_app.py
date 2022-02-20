@@ -48,7 +48,7 @@ for colName, filterVals in filterMap.items():
     if len(filterVals)>0: 
         filterDF = filterDF[filterDF[colName].isin(filterVals)]
 
-st.write(filterDF.info)
+st.write(filterDF.shape)
 st.write(filterDF.head(30))
 st.write(filterDF.describe())
     
