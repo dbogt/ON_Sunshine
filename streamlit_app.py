@@ -10,7 +10,6 @@ st.write("App in progress...")
 st.write("App will load last 10 years of historical public list disclosure from https://www.ontario.ca/page/public-sector-salary-disclosure")
 # path = 'https://drive.google.com/uc?export=download&id='+csvID
 path = "https://drive.google.com/u/0/uc?id={}&export=download&confirm=t".format(csvID)
-# st.write(csvID)
 
 @st.cache
 def grab_csv():
@@ -37,6 +36,7 @@ pickYear = st.sidebar.multiselect("Pick a year to filter", allYears)
 pickSector = st.sidebar.multiselect("Pick a sector to filter", allSectors)
 pickJob = st.sidebar.multiselect("Pick a job title to filter", allJobs)
 
+st.header("Entire Data Set")
 col1, col2, col3, col4 = st.columns(4)
 output = "${:,.0f}"
 with col1:
@@ -47,8 +47,8 @@ with col3:
     st.metric("Max Salary",output.format(maxSalary))
 with col4:
     st.metric("Salary Stand Deviation",output.format(stdSalary))
-
-st.write(minSalary, maxSalary, stdSalary, avgSalary)
+st.write("Summary stats")
+st.write(df.describe())
 # pickSalary = st.sidebar.slider('Pick salary range',minSalary, maxSalary, (avgSalary-stdSalary,avgSalary+stdSalary))
 # pickSalary = st.sidebar.slider('Pick salary range',100000.0, 2000000.0, (120000.0,200000.0))
 lastName = st.sidebar.text_input("Last name search")
@@ -87,5 +87,6 @@ with colf4:
 
 st.write(filterDF.shape)
 st.write(filterDF.head(300))
+st.write("Summary stats")
 st.write(filterDF.describe())
     
