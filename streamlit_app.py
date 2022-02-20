@@ -102,5 +102,5 @@ st.write("Summary stats")
 st.write(filterDF.describe())
 if st.checkbox("Show chart"):
     filterDF['Full Name'] = filterDF.apply(lambda x: (x['First Name'] + x['Last Name']).title(), axis=1)
-    fig = px.line(filterDF, x='Calendar Year', y='Salary Paid', color='Full Name')
+    fig = px.bar(filterDF, x='Calendar Year', y='Salary Paid', color='Full Name')
     st.plotly_chart(fig)
