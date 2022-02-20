@@ -96,11 +96,11 @@ with colf3:
 with colf4:
     st.metric("Salary Stand Deviation",output.format(stdFSalary))
 
-filterDF['Full Name'] = filterDF.apply(lambda x: (x['First Name'] + x['Last Name']).title(), axis=1)
 st.write(filterDF.shape)
 st.write(filterDF.head(5000))
 st.write("Summary stats")
 st.write(filterDF.describe())
 if st.checkbox("Show chart"):
+    filterDF['Full Name'] = filterDF.apply(lambda x: (x['First Name'] + x['Last Name']).title(), axis=1)
     fig = px.line(filterDF, x='Calendar Year', y='Salary Paid', color='Full Name')
     st.plotly_chart(fig)
