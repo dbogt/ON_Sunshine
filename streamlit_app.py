@@ -35,6 +35,11 @@ allEmployers = sorted(df['Employer'].unique())
 allYears = sorted(df['Calendar Year'].unique())
 allSectors = sorted(df['Sector'].unique())
 allJobs = df['Job Title'].unique()
+minSalary = df['Salary Paid'].min()
+maxSalary = df['Salary Paid'].max()
+stdSalary = df['Salary Paid'].std()
+avgSalary = df['Salary Paid'].mean()
+
 
 filterDF = df.copy()
 
@@ -42,6 +47,7 @@ pickEmployer = st.sidebar.multiselect("Pick employers to filter", allEmployers)
 pickYear = st.sidebar.multiselect("Pick a year to filter", allYears)
 pickSector = st.sidebar.multiselect("Pick a sector to filter", allSectors)
 pickJob = st.sidebar.multiselect("Pick a job title to filter", allJobs)
+pickSalary = st.sidebar.slider('Pick salary range',minSalary, maxSalary, (avgSalary-stdSalary,avgSalary+stdSalary))
 
 filterMap = {'Employer':pickEmployer,
             'Calendar Year':pickYear,
