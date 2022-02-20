@@ -109,6 +109,7 @@ st.write(filterDF.head(5000))
 st.write("Summary stats")
 st.write(filterDF.describe())
 if st.checkbox("Show chart"):
+    barType = st.radio("Bar chart type",('group','overlay'))
     filterDF['Full Name'] = filterDF.apply(lambda x: (x['First Name'].strip() + " " + x['Last Name'].strip()).title(), axis=1)
-    fig = px.bar(filterDF, x='Calendar Year', y='Salary Paid', color='Full Name')
+    fig = px.bar(filterDF, x='Calendar Year', y='Salary Paid', color='Full Name',barmode=barType)
     st.plotly_chart(fig)
