@@ -43,7 +43,7 @@ avgSalary = df['Salary Paid'].mean()
 pickEmployer = st.sidebar.multiselect("Pick employers to filter", allEmployers,'York University')
 pickYear = st.sidebar.multiselect("Pick a year to filter", allYears)
 pickSector = st.sidebar.multiselect("Pick a sector to filter", allSectors)
-pickJob = st.sidebar.multiselect("Pick a job title to filter", allJobs)
+# pickJob = st.sidebar.multiselect("Pick a job title to filter", allJobs)
 
 
 filterDF = df.copy()
@@ -63,18 +63,22 @@ st.write("Summary stats")
 st.write(df.describe())
 # pickSalary = st.sidebar.slider('Pick salary range',minSalary, maxSalary, (avgSalary-stdSalary,avgSalary+stdSalary))
 # pickSalary = st.sidebar.slider('Pick salary range',100000.0, 2000000.0, (120000.0,200000.0))
+
+pickJob = st.sidebar.text_input("Job title search")
 lastName = st.sidebar.text_input("Last name search")
 firstName = st.sidebar.text_input("First name search")
+
+
 filterMap = {'Employer':pickEmployer,
             'Calendar Year':pickYear,
-            'Sector':pickSector,
-            'Job Title':pickJob}
+            'Sector':pickSector}
 
 for colName, filterVals in filterMap.items():
     if len(filterVals)>0: 
         filterDF = filterDF[filterDF[colName].str.strip().str.lower().isin([x.lower() for x in filterVals])]
 
 filterDF = filterDF[filterDF['Last Name'].str.contains(lastName, flags=re.IGNORECASE, regex=True) & filterDF['First Name'].str.contains(firstName, flags=re.IGNORECASE, regex=True)]
+filterDF = filterDF[filterDF['Job Title'].str.contains(pickJob, flags=re.IGNORECASE, regex=True) & filterDF['First Name'].str.contains(firstName, flags=re.IGNORECASE, regex=True)]
 
 minSalaryPick = st.sidebar.number_input("Min salary", value=100000.0)
 maxSalaryPick = st.sidebar.number_input("Max salary", value=maxSalary)
