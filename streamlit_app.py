@@ -7,6 +7,7 @@ st.write("App will load last 10 years of historical public list disclosure from 
 # csvID = st.secrets['csvID']
 csvID = st.secrets['sp500ID']
 path = 'https://drive.google.com/uc?export=download&id='+csvID
-st.write(csvID)
+# st.write(csvID)
 df = pd.read_csv(path)
 st.write(list(df.columns))
+st.write(df)
