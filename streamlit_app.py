@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 import re
+import plotly.express as px
 
 st.set_page_config(layout="wide",page_title='Ontario Sunshine List')
 csvID = st.secrets['csvID']
@@ -96,7 +97,9 @@ with colf4:
     st.metric("Salary Stand Deviation",output.format(stdFSalary))
 
 st.write(filterDF.shape)
-st.write(filterDF.head(300))
+st.write(filterDF.head(5000))
 st.write("Summary stats")
 st.write(filterDF.describe())
-    
+
+fig = px.line(filterDF, x='Calendary Year', y='Salary Paid', color='Last Name')
+st.plotly_chart(fig)
