@@ -66,6 +66,8 @@ filterDF = filterDF[filterDF['Last Name'].str.contains(lastName) & filterDF['Fir
 minSalaryPick = st.sidebar.number_input("Min salary", value=100000.0)
 maxSalaryPick = st.sidebar.number_input("Max salary", value=maxSalary)
 
+filterDF = filterDF[filterDF['Salary Paid'].between(minSalaryPick, maxSalaryPick)]
+
 st.write(filterDF.shape)
 st.write(filterDF.head(30))
 st.write(filterDF.describe())
