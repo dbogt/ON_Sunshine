@@ -6,9 +6,18 @@ import plotly.express as px
 
 st.set_page_config(layout="wide",page_title='Ontario Sunshine List')
 csvID = st.secrets['csvID']
+path = "https://drive.google.com/u/0/uc?id={}&export=download&confirm=t".format(csvID)
 
+@st.cache
+def grab_csv():
+    df = pd.read_csv(path)
+    df['Full Name'] = df.apply(lambda x: (x['First Name'].strip() + " " + x['Last Name'].strip()).title(), axis=1)
+    return df
+
+df = grab_csv()
+
+#%% Main App
 st.title("Ontario Sunshine List Dashboard")
-
 if st.checkbox("Intersting finds"):
     finds = """
     - Search for YELLE-WEATHERALL as last name, looks like there was a typo in 2006, should be $127,455 not $12,745,500
@@ -19,17 +28,9 @@ if st.checkbox("Intersting finds"):
 
 st.write("App in progress...")
 st.write("App will load last 10 years of historical public list disclosure from https://www.ontario.ca/page/public-sector-salary-disclosure")
-# path = 'https://drive.google.com/uc?export=download&id='+csvID
-path = "https://drive.google.com/u/0/uc?id={}&export=download&confirm=t".format(csvID)
 
-@st.cache
-def grab_csv():
-    df = pd.read_csv(path)
-    return df
-
-df = grab_csv()
-st.sidebar.write(list(df.columns))
-
+#%% Sidebar Filters
+#st.sidebar.write(list(df.columns))
 allEmployers = sorted(df['Employer'].unique())
 allYears = sorted(df['Calendar Year'].unique())
 allSectors = sorted(df['Sector'].unique())
@@ -39,13 +40,13 @@ maxSalary = df['Salary Paid'].max()
 stdSalary = df['Salary Paid'].std()
 avgSalary = df['Salary Paid'].mean()
 
-
-filterDF = df.copy()
-
 pickEmployer = st.sidebar.multiselect("Pick employers to filter", allEmployers,'York University')
 pickYear = st.sidebar.multiselect("Pick a year to filter", allYears)
 pickSector = st.sidebar.multiselect("Pick a sector to filter", allSectors)
 pickJob = st.sidebar.multiselect("Pick a job title to filter", allJobs)
+
+
+filterDF = df.copy()
 
 st.header("Entire Data Set")
 col1, col2, col3, col4 = st.columns(4)
@@ -101,6 +102,5 @@ st.write(filterDF.head(5000))
 st.write("Summary stats")
 st.write(filterDF.describe())
 if st.checkbox("Show chart"):
-    filterDF['Full Name'] = filterDF.apply(lambda x: (x['First Name'] + " " + x['Last Name']).title(), axis=1)
     fig = px.bar(filterDF, x='Calendar Year', y='Salary Paid', color='Full Name')
     st.plotly_chart(fig)
