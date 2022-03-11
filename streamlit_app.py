@@ -6,18 +6,34 @@ import plotly.express as px
 
 st.set_page_config(layout="wide",page_title='Ontario Sunshine List')
 csvID = st.secrets['csvID']
-path = "https://drive.google.com/u/0/uc?id={}&export=download&confirm=t".format(csvID)
+csvID_clean = st.secrets['csvID_clean']
+gdrivePath = "https://drive.google.com/u/0/uc?id={}&export=download&confirm=t"
+path = gdrivePath.format(csvID)
+path_clean = gdrivePath.format(csvID_clean)
 
+#%% Import Functions ###############################################################################
 @st.cache
 def grab_csv():
     df = pd.read_csv(path)
-    # df['Full Name'] = df.apply(lambda x: (x['First Name'].strip() + " " + x['Last Name'].strip()).title(), axis=1)
     return df
 
-df = grab_csv()
+@st.cache
+def grab_csv_clean():
+    #fixed numerical issues, e.g. $128,059,85 instead of $128,059.85
+    df = pd.read_csv(path_clean)
+    return df
 
-#%% Main App
+df_messy = grab_csv()
+df_clean = grab_csv_clean()
+
+
+#%% Main App #######################################################################################
 st.title("Ontario Sunshine List Dashboard")
+if st.checkbox("Use cleaned up data", value=True):
+    df=df_clean
+else:
+    df=df_messy
+
 if st.checkbox("Intersting finds"):
     finds = """
     - Search for YELLE-WEATHERALL as last name, looks like there was a typo in 2006, should be ${:,} vs. {:,}
@@ -29,7 +45,7 @@ if st.checkbox("Intersting finds"):
 st.write("App in progress...")
 st.write("App will load last 20+ years (1996-2020) of historical public sector salary disclosure from https://www.ontario.ca/page/public-sector-salary-disclosure")
 
-#%% Sidebar Filters
+#%% Sidebar Filters #######################################################################################
 #st.sidebar.write(list(df.columns))
 allEmployers = sorted(df['Employer'].unique())
 allYears = sorted(df['Calendar Year'].unique())
@@ -44,7 +60,6 @@ pickEmployer = st.sidebar.multiselect("Pick employers to filter", allEmployers,[
 pickYear = st.sidebar.multiselect("Pick a year to filter", allYears)
 pickSector = st.sidebar.multiselect("Pick a sector to filter", allSectors)
 # pickJob = st.sidebar.multiselect("Pick a job title to filter", allJobs)
-
 
 filterDF = df.copy()
 
