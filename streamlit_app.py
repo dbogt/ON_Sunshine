@@ -27,7 +27,7 @@ if st.checkbox("Intersting finds"):
     st.write(finds)
 
 st.write("App in progress...")
-st.write("App will load last 10 years of historical public list disclosure from https://www.ontario.ca/page/public-sector-salary-disclosure")
+st.write("App will load last 20+ years (1996-2020) of historical public sector salary disclosure from https://www.ontario.ca/page/public-sector-salary-disclosure")
 
 #%% Sidebar Filters
 #st.sidebar.write(list(df.columns))
