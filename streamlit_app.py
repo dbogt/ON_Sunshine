@@ -20,10 +20,10 @@ df = grab_csv()
 st.title("Ontario Sunshine List Dashboard")
 if st.checkbox("Intersting finds"):
     finds = """
-    - Search for YELLE-WEATHERALL as last name, looks like there was a typo in 2006, should be ${:,} not ${:,}
+    - Search for YELLE-WEATHERALL as last name, looks like there was a typo in 2006, should be ${:.3f}k not ${:.3f}mm
     - Search for HARRIS STEPHEN (last, first), looks like there was a typo in 2006, should be $128k not 12.8mm 
     - Some employer names have not been consistent over time (e.g. York in 1997, otherwise York University)
-    """.format(127455, 12745500)
+    """.format(127455/1000, 12745500/1000000)
     st.write(finds)
 
 st.write("App in progress...")
