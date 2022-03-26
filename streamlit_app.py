@@ -4,7 +4,14 @@ import requests
 import re
 import plotly.express as px
 
-st.set_page_config(layout="wide",page_title='Ontario Sunshine List')
+st.set_page_config(layout="wide",page_title='Ontario Sunshine List',
+menu_items={
+        "About": f"Ontario Sunshine List"
+        f"\nApp contact: [Bogdan Tudose](mailto:bogdan.tudose@marqueegroup.ca)",
+        "Report a Bug": "https://github.com/dbogt/ON_Sunshine/issues/",
+        "Get help": None,
+    })
+
 csvID = st.secrets['csvID']
 csvID_clean = st.secrets['csvID_clean']
 gdrivePath = "https://drive.google.com/u/0/uc?id={}&export=download&confirm=t"
@@ -42,8 +49,7 @@ if st.checkbox("Intersting finds"):
     """.format(127455, 12745500)
     st.write(finds)
 
-st.write("App in progress...")
-st.write("App will load last 20+ years (1996-2020) of historical public sector salary disclosure from https://www.ontario.ca/page/public-sector-salary-disclosure")
+st.write("App will load last 25+ years (1996-2021) of historical public sector salary disclosure from https://www.ontario.ca/page/public-sector-salary-disclosure")
 
 #%% Sidebar Filters #######################################################################################
 #st.sidebar.write(list(df.columns))
