@@ -9,7 +9,6 @@ menu_items={
         "About": f"Ontario Sunshine List"
         f"\nApp contact: [Bogdan Tudose](mailto:bogdan.tudose@marqueegroup.ca)",
         "Report a Bug": "https://github.com/dbogt/ON_Sunshine/issues/",
-        "Get help": None,
     })
 
 csvID = st.secrets['csvID']
