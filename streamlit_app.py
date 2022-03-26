@@ -27,6 +27,8 @@ def grab_csv():
 def grab_csv_clean():
     #fixed numerical issues, e.g. $128,059,85 instead of $128,059.85
     df = pd.read_csv(path_clean)
+    if len(df.columns) == 9:
+        df = df.iloc[:,1:]
     return df
 
 df_messy = grab_csv()
