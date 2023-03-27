@@ -18,12 +18,12 @@ path = gdrivePath.format(csvID)
 path_clean = gdrivePath.format(csvID_clean)
 
 #%% Import Functions ###############################################################################
-@st.cache
+@st.cache_data
 def grab_csv():
     df = pd.read_csv(path)
     return df
 
-@st.cache
+@st.cache_data
 def grab_csv_clean():
     #fixed numerical issues, e.g. $128,059,85 instead of $128,059.85
     df = pd.read_csv(path_clean)
