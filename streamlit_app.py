@@ -12,7 +12,7 @@ menu_items={
     })
 
 csvID = st.secrets['csvID']
-csvID_clean = st.secrets['csvID_clean']
+csvID_clean = st.secrets['csvID_clean_2022']
 gdrivePath = "https://drive.google.com/u/0/uc?id={}&export=download&confirm=t"
 path = gdrivePath.format(csvID)
 path_clean = gdrivePath.format(csvID_clean)
