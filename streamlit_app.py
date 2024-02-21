@@ -55,6 +55,8 @@ st.write("App will load last 25+ years (1996-2022) of historical public sector s
 #%% Sidebar Filters #######################################################################################
 #st.sidebar.write(list(df.columns))
 #st.write(df_clean.shape)
+df.head()
+df.columns
 allEmployers = sorted(df['Employer'].unique())
 allYears = sorted(df['Calendar Year'].unique())
 allSectors = sorted(df['Sector'].unique())
