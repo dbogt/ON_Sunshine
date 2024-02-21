@@ -35,10 +35,6 @@ def grab_csv_clean():
 
 df_messy = grab_csv()
 df_clean = grab_csv_clean()
-st.write("DEBUG")
-st.write(df_clean.head())
-st.write(df_clean.head())
-st.write(df_clean.columns)
 
 #%% Main App #######################################################################################
 st.title("Ontario Sunshine List Dashboard")
