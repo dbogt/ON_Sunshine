@@ -61,7 +61,7 @@ if st.checkbox("Intersting finds"):
     """.format(127455, 12745500)
     st.write(finds)
 
-st.write("App will load last 25+ years (1996-2022) of historical public sector salary disclosure from https://www.ontario.ca/page/public-sector-salary-disclosure")
+st.write("App will load last 25+ years (1996-2023) of historical public sector salary disclosure from https://www.ontario.ca/page/public-sector-salary-disclosure")
 
 #%% Sidebar Filters #######################################################################################
 #st.sidebar.write(list(df.columns))
