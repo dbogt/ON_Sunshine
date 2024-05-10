@@ -41,6 +41,10 @@ def grab_csv_clean():
     df = pd.read_csv(path_clean)
     if len(df.columns) == 9:
         df = df.iloc[:,1:]
+    df2023 = grab_new()
+    df2023.columns = df.columns
+    df = pd.concat([df, df2023])
+
     return df
 
 df_messy = grab_csv()
