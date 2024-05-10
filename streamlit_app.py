@@ -21,6 +21,12 @@ path_clean = st.secrets['csv_link_2022']
 
 #%% Import Functions ###############################################################################
 @st.cache_data
+def grab_new():
+    url = "https://www.ontario.ca/public-sector-salary-disclosure/pssd-assets/files/2023/tbs-pssd-compendium-salary-disclosed-2023-en-utf-8-2024-03-28.csv"
+    df2023 = pd.read_csv(url)
+    return df2023
+
+@st.cache_data
 def grab_csv():
     df = pd.read_csv(path)
     df2023 = grab_new()
@@ -28,11 +34,6 @@ def grab_csv():
     df = pd.concat([df, df2023])
     return df
 
-@st.cache_data
-def grab_new():
-    url = "https://www.ontario.ca/public-sector-salary-disclosure/pssd-assets/files/2023/tbs-pssd-compendium-salary-disclosed-2023-en-utf-8-2024-03-28.csv"
-    df2023 = pd.read_csv(url)
-    return df2023
 
 @st.cache_data
 def grab_csv_clean():
