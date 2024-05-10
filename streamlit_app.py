@@ -47,15 +47,15 @@ def grab_csv_clean():
 
     return df
 
-df_messy = grab_csv()
-df_clean = grab_csv_clean()
+#df_messy = grab_csv()
+#df_clean = grab_csv_clean()
 
 #%% Main App #######################################################################################
 st.title("Ontario Sunshine List Dashboard")
 if st.checkbox("Use cleaned up data", value=True):
-    df=df_clean
+    df=grab_csv_clean()
 else:
-    df=df_messy
+    df=grab_csv()
 
 if st.checkbox("Intersting finds"):
     finds = """
